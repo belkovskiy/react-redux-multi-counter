@@ -14,7 +14,7 @@ const initialState: CountersState = {
 }
 
 const countersSlice = createSlice({
-  name: 'counters',
+  name: 'allCounters',
   initialState,
   reducers: {
     addCounter: (state, action: PayloadAction<number>) => {
@@ -22,28 +22,40 @@ const countersSlice = createSlice({
         id: action.payload,
         value: 0,
       };
-      const counter = state.counters.find(c => c.id === action.payload);
+      const counter =
+        state.counters.find(
+          c => c.id === action.payload
+        );
       if (!counter) {
         state.counters.push(newCounter);
       }
 
     },
     increment: (state, action: PayloadAction<number>) => {
-      const counter = state.counters.find(c => c.id === action.payload);
+      const counter =
+        state.counters.find(c => c.id === action.payload
+        );
       if (counter) {
         counter.value += 1;
       }
     },
 
     decrement: (state, action: PayloadAction<number>) => {
-      const counter = state.counters.find(c => c.id === action.payload);
+      const counter =
+        state.counters.find(c => c.id === action.payload
+        );
       if (counter) {
         counter.value -= 1;
       }
     },
+    removeCounter: (state, action: PayloadAction<number>) => {
+      state.counters =
+        state.counters.filter(counter => counter.id !== action.payload
+        );
+    }
   },
 });
 
-export const { addCounter, increment, decrement } = countersSlice.actions;
+export const { addCounter, increment, decrement, removeCounter } = countersSlice.actions;
 
 export default countersSlice.reducer;
