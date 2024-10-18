@@ -19,10 +19,14 @@ const Counter: React.FC<CounterProps> = ({ id, value }) => {
       <p>
         Counter Value: {value}
       </p>
-      <button onClick={() => dispatch(increment(id))}>
+      <button
+        onClick={() => dispatch(increment(id))}
+      >
         Increment
       </button>
-      <button onClick={() => dispatch(decrement(id))}>
+      <button
+        onClick={() => dispatch(decrement(id))}
+      >
         Decrement
       </button>
     </div>

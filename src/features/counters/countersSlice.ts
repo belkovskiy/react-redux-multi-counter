@@ -17,12 +17,16 @@ const countersSlice = createSlice({
   name: 'counters',
   initialState,
   reducers: {
-    addCounter: (state) => {
+    addCounter: (state, action: PayloadAction<number>) => {
       const newCounter: CounterState = {
-        id: Date.now(),
+        id: action.payload,
         value: 0,
       };
-      state.counters.push(newCounter);
+      const counter = state.counters.find(c => c.id === action.payload);
+      if (!counter) {
+        state.counters.push(newCounter);
+      }
+
     },
     increment: (state, action: PayloadAction<number>) => {
       const counter = state.counters.find(c => c.id === action.payload);
